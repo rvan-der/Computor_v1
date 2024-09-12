@@ -21,16 +21,14 @@ public class ComputorV1 {
         Polynomial reduced = null;
         try {
             pnmLeft = pnmFactory.newPolynomial(eqSplit[0]);
-            System.out.println(pnmLeft.toString() + "  degree: " + pnmLeft.degree);
-            if (eqSplit.length == 2) {
+            if (eqSplit.length == 2)
                 pnmRight = pnmFactory.newPolynomial(eqSplit[1]);
-                System.out.println(pnmRight.toString() + "  degree: " + pnmRight.degree);
-            }
             reduced = pnmLeft;
-            if (pnmRight != null) {
+            if (pnmRight != null)
                 reduced = pnmLeft.substractPolynomial(pnmRight);
-                System.out.println("reduced form:\n" + reduced.toString() + "  degree: " + reduced.degree);
-            }
+            System.out.println("reduced form: " + reduced.toString() + " = 0");
+            System.out.println("degree: " + reduced.degree);
+            PolynomialSolver.solve(reduced);
         }
         catch (Exception e) {
             System.out.println(e.toString());

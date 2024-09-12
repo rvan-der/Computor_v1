@@ -7,6 +7,7 @@ import fr.rvander.computorV1.exceptions.ComputorV1PolynomialException;
 
 public class Polynomial {
 
+    public static final int maxDegreeSolving = 1;
     public ArrayList<Double> coefs = null;
     public int degree = 0;
 
@@ -21,11 +22,8 @@ public class Polynomial {
 
     private ArrayList<Double> trimZeroes(ArrayList<Double> p_array) {
         ArrayList<Double> resArray = new ArrayList<Double>(p_array);
-        int i = p_array.size() - 1;
-        while (p_array.get(i) == 0 && i > 0) {
+        for (int i = p_array.size() - 1; p_array.get(i) == 0 && i > 0; i--)
             resArray.remove(i);
-            i--;
-        }
         return resArray;
     }
 
