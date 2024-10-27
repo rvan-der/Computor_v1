@@ -15,7 +15,7 @@ public final class PolynomialSolver {
 
     public static void solve(Polynomial p_polynomial) throws ComputorV1PolynomialException {
         if (p_polynomial == null)
-            throw new ComputorV1PolynomialException("Recieved a null pointer in solver");
+            throw new ComputorV1PolynomialException("Recieved a null pointer in solver.");
         switch (p_polynomial.degree) {
             case 0:
                 PolynomialSolver.solveDegree0(p_polynomial);
@@ -61,21 +61,28 @@ public final class PolynomialSolver {
         if (delta == 0) {
             root1 = -b / (2 * a);
             System.out.println(String.format("This polynomial has a unique real solution:\n%s",
-                    df.format(root1)));
+                    root1 != 0 ? df.format(root1) : "0"));
         }
         else if (delta > 0) {
             root1 = (-b - Math.sqrt(delta)) / (2 * a);
             root2 = (-b + Math.sqrt(delta)) / (2 * a);
             System.out.println(String.format("This polynomial has two real solutions:\n%s and %s",
-                    df.format(root1), df.format(root2)));
+                    root1 != 0 ? df.format(root1) : "0", root2 != 0 ? df.format(root2) : "0"));
         }
         else {
-            String fmt1 = df.format(-b);
-            String fmt2 = df.format(Math.sqrt(Math.abs(delta)));
-            String fmt3 = df.format(2 * a);
-            System.out.println(String.format("This polynomial has two complex solutions:\n" +
-                    "(%s - i * %s) / %s and (%s + i * %s) / %s",
-                    fmt1, fmt2, fmt3, fmt1, fmt2, fmt3));
+            String fmtB = df.format(-b);
+            String fmtDelta = df.format(Math.sqrt(Math.abs(delta)));
+            String fmt2A = df.format(2 * a);
+            if (b != 0) {
+                System.out.println(String.format("This polynomial has two complex solutions:\n" +
+                        "(%s - i * %s) / %s and (%s + i * %s) / %s",
+                        fmtB, fmtDelta, fmt2A, fmtB, fmtDelta, fmt2A));
+            }
+            else {
+                System.out.println(String.format("This polynomial has two complex solutions:\n" +
+                        "(i * %s) / %s and (i * %s) / %s",
+                        fmtDelta, fmt2A, fmtDelta, fmt2A));
+            }
         }
     }
 }

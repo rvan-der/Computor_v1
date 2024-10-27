@@ -15,14 +15,14 @@ public class ComputorV1 {
             return;
         }
         PolynomialFactory pnmFactory = PolynomialFactory.getInstance();
-        String eqSplit[] = args[0].split("=");
+        String equationSplit[] = args[0].split("=");
         Polynomial pnmLeft = null;
         Polynomial pnmRight = null;
         Polynomial reduced = null;
         try {
-            pnmLeft = pnmFactory.newPolynomial(eqSplit[0]);
-            if (eqSplit.length == 2)
-                pnmRight = pnmFactory.newPolynomial(eqSplit[1]);
+            pnmLeft = pnmFactory.newPolynomial(equationSplit[0]);
+            if (equationSplit.length == 2)
+                pnmRight = pnmFactory.newPolynomial(equationSplit[1]);
             reduced = pnmLeft;
             if (pnmRight != null)
                 reduced = pnmLeft.substractPolynomial(pnmRight);
